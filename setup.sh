@@ -85,6 +85,9 @@ mv xubuntu_setup/themes/* ~/.themes/
 mv xubuntu_setup/icons/* ~/.icons/
 mv xubuntu_setup/vscode/* ~/.vscode/
 xfconf-query --channel xfce4-desktop --property /backdrop/screen0/monitorHDMI-1/workspace0/last-image --set ~/Pictures/wallpapers/wave-dark.png # monitorHDMI-1 will change depending on device
+git clone https://github.com/vinceliuice/grub2-themes
+sudo ./grub2-themes/install.sh -b -t vimix
+sudo rm -r grub2-themes
 
 # Delete all directories and files in Downloads folder
 cd
