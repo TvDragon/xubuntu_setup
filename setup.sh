@@ -28,32 +28,16 @@ wget -qO - https://typora.io/linux/public-key.asc | sudo apt-key add -
 sudo add-apt-repository 'deb https://typora.io/linux ./'
 sudo apt update
 sudo apt install typora -y
-# Finding what distro device is
-id=$(cat /etc/os-release | grep ID)
-distro="$(echo "$id" | cut -d'=' -f2 | head -n 1)"
-# Install discord (Check if using debian or xubuntu/ubuntu)
-if [ "$distro" = "debian" ]; then
-	wget -O discord.deb "https://discord.com/api/download?platform=linux&format=deb"
-	dpkg-deb -x discord.deb unpack
-	dpkg-deb --control discord.deb unpack/DEBIAN
-	sed -i 's/libappindicator1/libayatana-appindicator3-1/g' ./unpack/DEBIAN/control
-	dpkg -b unpack discord.deb
-	sudo apt install ./discord.deb -y
-elif [ "$distro" = "xubuntu" ] || [ "$distro" = "ubuntu" ]; then
-	wget -O discord.deb "https://discord.com/api/download?platform=linux&format=deb"
-	sudo apt install ./discord.deb -y
-fi
+# Install discord
+wget -O discord.deb "https://discord.com/api/download?platform=linux&format=deb"
+sudo apt install ./discord.deb -y
 # Install onlyoffice
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys CB2DE8E5
 echo 'deb https://download.onlyoffice.com/repo/debian squeeze main' | sudo tee -a /etc/apt/sources.list.d/onlyoffice.list
 sudo apt update && sudo apt install onlyoffice-desktopeditors -y
 # Install zoom
 wget https://zoom.us/client/latest/zoom_amd64.deb
-if [ "$distro" = "debian" ]; then
-	sudo apt dpkg -i ./zoom_amd64.deb -y
-elif [ "$distro" = "xubuntu" ] || [ "$distro" = "ubuntu" ]; then
-	sudo apt update && sudo apt install ./zoom_amd64.deb
-fi
+sudo apt update && sudo apt install ./zoom_amd64.deb
 # Install git
 sudo apt install git -y
 # Install pip3
@@ -78,13 +62,14 @@ sdk use gradle 7.4
 
 # Desktop Setup
 cd
-mkdir .themes .icons
-mkdir Pictures/wallpapers
-mv xubuntu_setup/wallpapers/* ~/Pictures/wallpapers
+mkdir .themes .icons .fonts
+mkdir Pictures/Wallpapers
+mv xubuntu_setup/Wallpapers/* ~/Pictures/Wallpapers
 mv xubuntu_setup/themes/* ~/.themes/
 mv xubuntu_setup/icons/* ~/.icons/
+mv xubuntu_setup/fonts/* ~/.fonts/
 mv xubuntu_setup/vscode/* ~/.vscode/
-xfconf-query --channel xfce4-desktop --property /backdrop/screen0/monitorHDMI-1/workspace0/last-image --set ~/Pictures/wallpapers/wave-dark.png # monitorHDMI-1 will change depending on device
+xfconf-query --channel xfce4-desktop --property /backdrop/screen0/monitorHDMI-1/workspace0/last-image --set ~/Pictures/Wallpapers/ign_astronaut.png # monitorHDMI-1 will change depending on device
 git clone https://github.com/vinceliuice/grub2-themes
 sudo ./grub2-themes/install.sh -b -t vimix
 sudo rm -r grub2-themes
