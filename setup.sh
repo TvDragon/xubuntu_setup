@@ -2,6 +2,9 @@
 
 cd
 cd Downloads/
+# Remove Unused Software
+sudo apt remove libreoffice* thunderbird* gnome-mines gnome-sudoku xfburn -y
+sudo apt autoremove -y
 # Install build-essentials for GCC/G++ compiler and make and valgrind
 sudo apt install build-essential valgrind -y
 # Install java
