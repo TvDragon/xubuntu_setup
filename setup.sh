@@ -70,7 +70,7 @@ mv xubuntu_setup/Wallpapers/* ~/Pictures/Wallpapers
 mv xubuntu_setup/themes/* ~/.themes/
 mv xubuntu_setup/icons/* ~/.icons/
 mv xubuntu_setup/fonts/* ~/.fonts/
-mv xubuntu_setup/vscode/* ~/.vscode/
+mv xubuntu_setup/dotconfigs/* ~/.config/
 xfconf-query --channel xfce4-desktop --property /backdrop/screen0/monitorHDMI-1/workspace0/last-image --set ~/Pictures/Wallpapers/ign_astronaut.png # monitorHDMI-1 will change depending on device
 git clone https://github.com/vinceliuice/grub2-themes
 sudo ./grub2-themes/install.sh -b -t vimix
